@@ -1,7 +1,6 @@
 #pragma once
 #include "Path.h"
 #include "Subset.h"
-#include "Node.h"
 
 class ComNode;
 
@@ -19,19 +18,18 @@ public:
 	void list(bool noColor = false);		//wypisanie macierzy odleglosci
 	void bruteForce(bool);					//przeglad zupelny
 	void branchAndBound();					//bnb
-	void HeldKarp();
+	void HeldKarp();					//programowanie dynamiczne
 
-	int getValue(uint, uint);
+	int getValue(uint, uint);			//odleglosc z miasta do miasta
 
-	uint countCities();
-	uint minimalizeCost();
+	uint countCities();				//liczba miast
+	uint minimalizeCost();			//
 
 protected:
 	bool engage(uint vNumber = 0);
 	void myClear();
 
 private:
-	static bool seed;
 	//Macierz w postaci[wierzcholki][krawedzie]
 	uint numberOfCities;
 	int ** matrix;//macierz
@@ -41,11 +39,11 @@ private:
 	// Zwraca maskymalną wartość jaka jest zapisana w kolumnie
 	// (macierz, waga lub numer kolumny)
 	uint getMaxInColumn();
-	int minRow(uint);
-	int minColumn(uint);
-	int minRow(uint, int&);
+	int minRow(uint);			//minimalna wartosc w wierszu
+	int minColumn(uint);		//minimalna wartosc w kolumnie
+	int minRow(uint, int&);		//przeciazone
 	int minColumn(uint, int&);
-	int secondMinRow(uint);
+	int secondMinRow(uint);		
 	int secondMinColumn(uint);
 	void subtractRow(uint, int);
 	void subtractColumn(uint, int);

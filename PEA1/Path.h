@@ -14,7 +14,7 @@ public:
 	void mergeP(Path &);		//doklejenie sciezki na poczatek aktualnej 
 	void mergeK(Path &);		//doklejenie sciezki na koniec aktualnej 
 	Path & operator=(const Path &);
-	const Pair & operator[](uint)const;
+	const Pair & operator[](uint x)const;
 	friend ostream & operator<<(ostream &, const Path&);
 	Pair & start();			//zwrocenie poczatku sciezki
 	Pair & end();			//zwrocenie konca sciezki

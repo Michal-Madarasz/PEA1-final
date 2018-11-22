@@ -4,6 +4,7 @@ typedef unsigned long ulong;
 typedef uint pair[2];
 
 #include <random>
+#include <iomanip>
 #include <algorithm>
 #include <iostream>
 #include <string>

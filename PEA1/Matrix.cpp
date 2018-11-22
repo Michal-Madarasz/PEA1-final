@@ -1,21 +1,14 @@
 #include "stdafx.h"
 #include "Matrix.h"
+#include "Node.h"
 
 
-bool Matrix::seed = false;
 // PUBLIC
 
 using kptree::print_tree_bracketed;
 
 Matrix::Matrix(uint nCity)
 {
-	// Jeśli random seed nie został zainicjowany
-	if (!Matrix::seed)
-	{
-		srand((unsigned int)time(NULL));
-		Matrix::seed = true;
-	}
-
 	numberOfCities = 0;
 	matrix = nullptr;
 
@@ -356,12 +349,7 @@ void Matrix::HeldKarp()
 
 	cout << "Koszt drogi: " << minCost << endl;
 	
-
-
 }
-
-
-
 
 
 int Matrix::getValue(uint row, uint column)
@@ -404,8 +392,8 @@ void Matrix::myClear()						//czyszczenie macierzy odleglosci
 {
 	if (matrix)
 	{
-		int** koniec = matrix + numberOfCities;
-		for (int** i = matrix; i < koniec; ++i)
+		int** end = matrix + numberOfCities;
+		for (int** i = matrix; i < end; ++i)
 		{
 			if (*i)
 			{
@@ -676,7 +664,7 @@ void Matrix::setValue(uint row, uint column, int value)	//ustawienie wartosci o 
 		matrix[row][column] = value;
 }
 
-uint Matrix::minimalizeCost()							//fukncja minimalizacji kosztu (bnb)
+uint Matrix::minimalizeCost()							//funkcja minimalizacji kosztu (bnb)
 {
 	uint lowerBound = 0;
 	// Minimalizacja kosztów w wierszach

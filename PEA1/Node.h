@@ -3,11 +3,12 @@
 
 class ComNode
 {
+	
 public:
 	ComNode();
-	ComNode(const ComNode &);
-	ComNode(Matrix &);
-	ComNode(Matrix &, uint );
+	ComNode(const ComNode &wez);
+	ComNode(Matrix &m);
+	ComNode(Matrix &m, uint idx);
 
 	void minimalizeCost();			//minimalizacja kosztu (za pomoca metody macierzy)
 
