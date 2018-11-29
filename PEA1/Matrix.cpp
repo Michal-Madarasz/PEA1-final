@@ -107,20 +107,9 @@ void Matrix::bruteForce(bool rysPostep)
 	if (!nCity)	//jezeli liczba miast jest rowna 0, to nie mozna wykonac algorytmu
 		return;
 
-	if (nCity >= 20)	//brak wypisywania postepu dla wiekszej ilosci miast od 20
+	if (nCity >= 15)	//brak wypisywania postepu dla wiekszej ilosci miast od 20
 		rysPostep = false;
 
-	ulong endStep = 2;	//ilosc permutacji
-	for (uint i = 3; i <= nCity; ++i)
-		endStep *= i;
-
-	ulong divide = endStep / 100;
-	if (!divide)				//ograniczenie sprawdzanych permutacji do 100000000
-		divide = 1;
-	if (divide > 1000000)
-		divide = 1000000;
-
-	bool newDiv = false;
 	uint maxValue = -1, actualStep = 0;
 	uint *cityVector = new uint[nCity];	//tablica z numerami miast
 	uint *bestPath = new uint[nCity];	//tablica przechowujaca najlepsza droge
@@ -128,8 +117,6 @@ void Matrix::bruteForce(bool rysPostep)
 	// Pierwsza permutacja
 	for (uint i = 0; i < nCity; ++i)
 		cityVector[i] = i;
-
-	double permutation = 0.0;
 
 	do
 	{
@@ -191,7 +178,7 @@ void Matrix::branchAndBound()
 
 				for (uint j = 0; j < path.size(); j++)
 				{
-					pom.matrix.setValue(i, path[j]);					//ustawienie macierzy w wezle
+					pom.matrix.setValue(i, path[j]);					//ustawienie wartoscu -1 w kolumnie i wierszu
 				}
 
 				// Minimalizacja kosztu
@@ -289,6 +276,7 @@ void Matrix::HeldKarp()
 		}
 	}
 	// wybor najlepszej sciezki
+	//przeszukanie ostatnich podzbiorów
 	for (int last = 0; last < numberOfCities - 1; ++last)
 	{
 		if (minCost > (matrix[last][numberOfCities - 1] + point[(1 << (numberOfCities - 1)) - 1][last].cost))
@@ -320,6 +308,7 @@ void Matrix::HeldKarp()
 		subsetId = temp_min.pop;
 	}
 
+	//wyliczenie i wypisanie najlepszego podzbioru
 	cout << "Droga: ";
 
 	int zero = -1;
